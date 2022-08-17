@@ -1,5 +1,5 @@
 const express = require('express');
-const { getProduct } = require('./database/db')
+const { getProduct } = require('./database/products')
 const server = express();
 
 server.set('view engine', 'ejs');
@@ -7,7 +7,7 @@ server.set('views', './views');
 
 server.use(express.static('./public'));
 
-server.get('/product/:id', (req, res)=>{
+server.get('/product/:id', (req, res)=>  {
   const { id } = req.params;
 
 const product = getProduct( Number(id) );
