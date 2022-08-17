@@ -7,7 +7,7 @@ server.set('views', './views');
 
 server.use(express.static('./public'));
 
-server.get('/', '/product/:id', (req, res)=>{
+server.get('/product/:id', (req, res)=>{
   const { id } = req.params;
 
 const product = getProduct( Number(id) );
