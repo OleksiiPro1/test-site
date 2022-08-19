@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Hello world!</title>
+	<title><%= title %></title>
   <link rel="stylesheet" href="./main.css">
 </head>
 <body>
@@ -12,7 +12,23 @@
   </div>
 
   <div>
+
     <div class="allProductStyles">
+      <div class="productStyles">
+      <% if (products.length > 0) {%>
+        <% products.forEach(product => {%>
+        <h2 class="title"><%= product.title %></h2>
+        <p><%= product.description %></p>
+        <img class="url" src="<%= product.url %>"  width="300px" height="300px" >
+        <br>
+        <a href="/product/<%= product.id %>">Go to product</a>
+          <% }) %>
+          <% }else {%>
+          <p>There are no products available...</p>
+          <%} %>
+        </div>
+    </div>
+    <!-- <div class="allProductStyles">
       <div class="productStyles">
         <h2>Product1</h2>
 
@@ -25,7 +41,7 @@
       </div>
       <div class="productStyles">
         <h2>Product4</h2>
-      </div>
+      </div> -->
     </div>
   </div>
 
