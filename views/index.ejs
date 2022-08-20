@@ -17,14 +17,20 @@
       <div class="productStyles">
       <% if (products.length > 0) {%>
         <% products.forEach(product => {%>
-        <h2 class="title"><%= product.title %></h2>
-        <p><%= product.description %></p>
-        <img class="url" src="<%= product.url %>"  width="300px" height="300px" >
-        <br>
-        <button class="button"><a class="text-decoration" href="/product/<%= product.id %>">Go to product</a></button>
-          <% }) %>
-          <% }else {%>
-          <p>There are no products available...</p>
+          <div class="product-card">
+            <h2 class="title"><%= product.title %></h2>
+            <p><%= product.description %></p>
+            <img class="url" src="<%= product.url %>"  width="300px" height="300px" >
+            <br>
+            <button class="button">
+              <a class="text-decoration" href="/product/<%= product.id %>">
+                Go to product
+              </a>
+            </button>
+          </div>
+            <% }) %>
+            <% }else {%>
+            <p>There are no products available...</p>
           <%} %>
           <br><br>
         </div>
@@ -38,7 +44,7 @@
       window.setTimeout(function () {
         document.body.classList.add('loaded');
         document.body.classList.remove('loaded_hiding');
-      }, 3000);
+      }, 400);
     }
   </script>
 

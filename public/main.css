@@ -9,14 +9,19 @@ background-color:white;
 width: 300px;
 height: 400px;
 color: black;
-display: inline-block;
+display: flex;
 }
 
 .allProductStyles{
 max-width: 1333px;
-display: flex;
+
 }
 
+.product-card{
+  display: inline;
+  margin: 10px;
+
+}
 
 .preloader {
   position: fixed;
