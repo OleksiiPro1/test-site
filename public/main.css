@@ -5,22 +5,19 @@ body {
 
 .productStyles{
 background-color:white;
-width: 300px;
-height: 400px;
+max-width: 1333px;
 color: black;
 display: flex;
 text-align: justify;
+flex-wrap: wrap;
 }
 
-.allProductStyles{
-max-width: 1333px;
-
-}
 
 .product-card{
   display: inline-block;
   margin: 10px;
-
+  width: 300px;
+  height: 400px;
 
 
 }
