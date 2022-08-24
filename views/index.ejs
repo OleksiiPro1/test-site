@@ -4,69 +4,6 @@
 	<meta charset="utf-8">
 	<title><%= title %></title>
   <link rel="stylesheet" href="./main.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-
-  <script>
-    window.onload = function () {
-      document.body.classList.add('loaded_hiding');
-      window.setTimeout(function () {
-        document.body.classList.add('loaded');
-        document.body.classList.remove('loaded_hiding');
-      }, 400)
-      let products = [];
-      ajax_get('/data', function(data) {
-        console.log(data);
-        for(var i in data)
-                products= JSON.parse(data[i]);
-        console.log(products)
-        displayProducts(products)});
-        ;
-    }
- function ajax_get(url, callback) {
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function() {
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-
-            try {
-                var data = JSON.parse(xmlhttp.responseText);
-            } catch(err) {
-                console.log(err.message + " in " + xmlhttp.responseText);
-                return;
-            }
-            callback(data);
-        }
-    };
-
-
-    xmlhttp.open("GET", url, true);
-    xmlhttp.send();
-}
-
-
-
-         function displayProducts(products){
-            if (products.length > 0){
-                products.forEach(product =>{
-                    $(productStyles).append(
-                    `<div class="product-card">
-        <h2 class="title"> ${product.title} </h2>
-        <p> ${product.description} </p>
-        <img class="url" src=" ${product.url} "  width="300px" height="300px" >
-        <br>
-        <button class="button">
-          <a class="text-decoration" href="/product/${product.id} ">
-            Go to product
-          </a>
-        </button>
-      </div>`)
-        })
-         }else {
-            $(productStyles).append('<p>Sorry no products available</p>')
-         }
-
-      }
-  </script>
-
 </head>
 <body>
    <h1>Buy our food</h1>
@@ -76,15 +13,40 @@
 
 
 
-      <div class="productStyles" id="productStyles">
-
-
+    <div class="allProductStyles">
+      <div class="productStyles">
+      <% if (products.length > 0) {%>
+        <% products.forEach(product => {%>
+          <div class="product-card">
+            <h2 class="title"><%= product.title %></h2>
+            <p><%= product.description %></p>
+            <img class="url" src="<%= product.url %>"  width="300px" height="300px" >
+            <br>
+            <button class="button">
+              <a class="text-decoration" href="/product/<%= product.id %>">
+                Go to product
+              </a>
+            </button>
+          </div>
+            <% }) %>
+            <% }else {%>
+            <p>There are no products available...</p>
+          <%} %>
+          <br><br>
         </div>
-
+    </div>
     </div>
 
 
-
+  <script>
+    window.onload = function () {
+      document.body.classList.add('loaded_hiding');
+      window.setTimeout(function () {
+        document.body.classList.add('loaded');
+        document.body.classList.remove('loaded_hiding');
+      }, 400);
+    }
+  </script>
 
 </body>
 </html>
