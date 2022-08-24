@@ -15,13 +15,11 @@ server.get('/', (req, res) =>  {
     {id: 4, title: 'Orange', description: 'Orange is very good', url: 'https://gcdn.utkonos.ru/resample/256x256q90/images/recipe/20180803143146-detoks.jpg'},
   ]
 
-const products_json = JSON.stringify(products);
-
 res.render('index', {title: 'Main page'});
 // res.render('index', {title: 'Main page', products });
 
   });
-  server.get('/data.json', function(req, res, next) {
+  server.get('/data', function(req, res) {
     const products = [
     {id: 1, title: 'Banana', description: 'Banana is very good', url: 'https://www.abcfact.ru/upload/001/u107/304/10fe8665.jpg'},
     {id: 2, title: 'Apple', description: 'Apple is very good', url: 'https://c-fa.cdn.smule.com/smule-gg-s-sf-bck4/arr/5c/08/c069505a-b7df-45a5-86b2-31188f21b992.jpg'},
@@ -29,13 +27,14 @@ res.render('index', {title: 'Main page'});
     {id: 4, title: 'Orange', description: 'Orange is very good', url: 'https://gcdn.utkonos.ru/resample/256x256q90/images/recipe/20180803143146-detoks.jpg'},
   ]
   const products_json = JSON.stringify(products);
-  var db = req.db; db.myCollection.find(function (err, docs) { if(err) {} else { res.json({products_json}); } }); });
 
+res.json({products_json});
+  });
 server.get('/product/:id', (req, res)=>  {
   const { id } = req.params;
 
 const product = getProduct( Number(id) );
-// console.log('product: ', product);
+console.log('product: ', product);
 
 res.render('main', { product });
 
